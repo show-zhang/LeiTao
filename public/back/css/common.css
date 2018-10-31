@@ -51,6 +51,12 @@ ul{
   top:0;
   background-color: #135370;
   z-index: 999;
+
+  transition: all 1s;
+}
+/* 隐藏左侧 */
+.lt_aside.hidemenu{
+  left: -180px;
 }
 
 .lt_aside .brand{
@@ -114,7 +120,11 @@ ul{
   height: 1200px;
   /* background: pink; */
   z-index: 666;
-  
+  transition: all 1s;
+}
+/* 左侧隐藏，右侧的padding-left为0 */
+.lt_main.hidemenu{
+  padding-left: 0;
 }
 .lt_topbar{
   height: 50px;
@@ -125,6 +135,11 @@ ul{
   position: fixed;
   top: 0px;
   left: 0px;
+  transition: all 1s;/*设置过渡动画*/
+}
+/* 右侧隐藏，padding-left=0 */
+.lt_topbar.hidemenu{
+  padding-left: 0px;
 }
 .lt_topbar .icon_menu,
 .lt_topbar .icon_logout{
