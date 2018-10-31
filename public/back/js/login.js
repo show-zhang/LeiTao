@@ -108,7 +108,7 @@ $(function(){
   * 3. 重置功能完成
   * */
 
-  $("[type='reset']").on("click",function(){
+  $("button[type='reset']").on("click",function(){
       // 调用实例的方法, 重置校验状态和内容
     // resetForm 传true, 内容和校验状态都重置
     //           不传true, 只重置校验状态
