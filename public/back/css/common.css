@@ -155,3 +155,11 @@ ul{
 .lt_content{
   padding: 15px;
 }
+/* 需要准备两个具备宽高的容器 */
+.lt_content .echarts_left,
+.lt_content .echarts_right{
+  width: 48%;
+  height: 400px;
+  background-color: rosybrown;
+}
+
