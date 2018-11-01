@@ -10,7 +10,8 @@
 
 img{
   display: block;
-  width: 100%;
+
+  /* width: 100%; */
 }
 a:link,
 a:visited,
@@ -166,3 +167,15 @@ ul{
   background-color: rosybrown;
 }
 
+
+.lt_content tbody img{
+  width: auto;
+  height: 50px;
+  margin: 0 auto;
+
+}
+
+#addModal img {
+  width: auto;
+  height: 100px;
+}

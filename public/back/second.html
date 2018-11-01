@@ -62,9 +62,94 @@
       </ol>
       <div class="content">
 
+        <!-- 主要内容 -->
+      <button class="btn btn-default mb-20" id="addBtn">添加分类</button>
+      <!-- 表格 -->
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>一级分类名</td>
+            <td>二级分类名</td>
+            <td>二级分类LOGO</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 挖个坑 -->
+        </tbody>
+      </table>
+
+      <!-- 分页导航 -->
+      <div class="text-right">
+         <!-- 准备一个 ul -->
+        <ul id="paginator"></ul>
+
       </div>
     </div>
   </div>
+
+  <!-- 添加模态框 -->
+<div  id="addModal" class="modal fade" tabindex="-1" >
+    <!-- modal-sm 小   modal-lg 大    默认中等  -->
+     <div class="modal-dialog modal-sm">
+      <form id="form">  <!--因后方的submit提交按钮，需要包裹完才能提交表单内容-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+          </div>
+          <!-- bootstrap 要求input外层 套一个 form-group, 做表单校验时, 如果不加 form-group 会报错 -->
+          <div class="modal-body">
+            <!-- 一级分类选择 -->
+              <div class="form-group">
+                    <!-- 按钮 -->
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                      <span id="dropdownText">请选择一级分类</span>
+                      <!-- span是那个下拉图标 -->
+                      <span class="caret"></span>
+                    </button>
+                    <!-- 下拉列表 -->
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <!-- 挖个坑 --> 
+                    </ul>
+                  </div>
+                  <!-- 一级分类id 隐藏文本域 -->
+                  <input type="hidden" name="categoryId">
+                   <!-- hot 火热的品牌 火热1, 不火热0-->
+                   <input type="hidden" name="hot" value="1"                        >
+              </div>
+              
+              <!-- 二级分类命名 -->
+              <div class="form-group">
+                <input type="text" name="brandName" class="form-control" id="exampleInputEmail1" placeholder="请输入二级分类">
+              </div>
+
+              <!-- 上传图片 -->
+              <div class="form-group">
+                <!-- name 指定后台用于接收的参数名
+                 data-url 后台文件上传的接口地址
+                -->
+                <label for="fileupload" class="btn btn-default">上传图片</label>
+                <input id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" type="file" style="display: none">
+              </div>
+
+              <!-- 图片预览 -->
+              <div class="form-group" id="imgBox">
+                  <img src="./images/none.png" alt="">
+                  <input type="hidden" name="brandLogo">
+                
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary" >添加</button>
+          </div>
+
+        </form>
+       </div>
+     </div>
+   </div>
 
   <!-- 退出模态框 -->
 <!-- 外层是蒙层, 内层才是真实的模态框 -->
@@ -89,6 +174,24 @@
     </div>
   </div>
 
+  <script type="text/html" id="secondTmp">
+    {{ each rows v i}}
+    <tr>
+        <td>{{(i+1)+(page-1)*size}}</td>
+        <td>{{v.categoryName}}</td>
+        <td>{{v.brandName}}</td>
+        <td><img src="{{v.brandLogo}}" alt=""></td>
+      </tr>
+    {{/each}}
+  </script>
+
+  <!-- 下拉框的模板 -->
+  <script type="text/html" id="dropdownTmp"> 
+    {{each rows v i}}
+    <li><a data-id="{{v.id}}" href="#">{{v.categoryName}}</a></li>
+    {{/each}}
+  </script>
+
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
   <!-- 引入进度条 -->
@@ -99,6 +202,11 @@
   <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
   <!-- 引入模板 -->
   <script src="./lib/artTemplate/template-web.js"></script>
+  <!-- 文件上传插件 -->
+  <!-- 依赖文件比较多 -->
+  <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+ 
  
   <script src="./js/common.js"></script>
   <script src="./js/checkLogin.js"></script>
