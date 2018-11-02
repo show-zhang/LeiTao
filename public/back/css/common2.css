@@ -18,6 +18,9 @@ a:active{
   vertical-align: middle;/*垂直居中*/
 }
 
+.mb_20{
+  margin-bottom: 20px;
+}
 
 /* 公用代码 */
 .body_bg{

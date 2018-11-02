@@ -73,10 +73,35 @@
                     <td><button>禁用</button></th> -->
                 </tdody>
               </table>
+
+              <!-- 分页容器 -->
+              <div class="text-right">
+
+                <ul id="paginator"></ul>
+              </div>
           </div>
         </div>
     </div>
 
+    <!-- 禁用启用模态框 -->
+    <div id="userModal" class="modal fade" tabindex="-1" role="dialog">
+       <!-- modal-sm 小   modal-lg 大    默认中等  -->
+        <div class="modal-dialog modal-sm" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+              <p class="red"><i class="glyphicon glyphicon-info-sign"></i>您确定要执行此操作吗？</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="submitBtn">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <!-- 模态框 -->
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
        <!-- modal-sm 小   modal-lg 大    默认中等  -->
@@ -93,15 +118,16 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
               <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
             </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+          </div>
+        </div>
+      </div>
+
   </div>
   
   <script type="text/html" id="tmp">
   {{ each rows v i}}
     <tr>
-      <td>{{v.id}}</td>
+      <td>{{i+1+(page-1)*size}}</td>
       <td>{{v.username}}</td>
       <td>{{v.mobile}}</td>
      <!-- isDelete 用于标记当前用户状态
@@ -110,9 +136,13 @@
       -->
       <td> {{v.isDelete===1?"正常":"已禁用"}}</td>
       {{ if v.isDelete===1 }}
-      <td><button class="btn btn-danger">禁用</button></th>
+      <td data-id="{{v.id}}">
+        <button class="btn btn-danger">禁用</button>
+      </td>
         {{else}}
-        <td><button class="btn btn-success">启用</button></th>
+        <td>
+          <button class="btn btn-success">启用</button>
+        </td>
         {{/if}}
     
     </tr>
@@ -127,6 +157,8 @@
   <script src="./lib/echarts/echarts.min.js"></script>
   <!-- 引入模板 -->
   <script src="./lib/artTemplate/template-web.js"></script>
+  <!-- 分页 -->
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
   
   <script src="./js/common2.js"></script>
   <script src="./js/checkLogin.js"></script>
