@@ -141,14 +141,17 @@ $(function(){
        dataType:"json",
        success:function(info){
           console.log(info);
-          $("#addModal").modal("hide");
-          currentPage=1;
-          render();
+          if(info.success){
 
-          //重置表单
-          $("#form").data("bootstrapValidator").resetForm(true);
-          $("#dropdownText").text("请输入一级分类");
-          $("#imgBox img").attr("src","./images/none.png");
+            $("#addModal").modal("hide");
+            currentPage=1;
+            render();
+  
+            //重置表单
+            $("#form").data("bootstrapValidator").resetForm(true);
+            $("#dropdownText").text("请输入一级分类");
+            $("#imgBox img").attr("src","./images/none.png");
+          }
        }
      })
    })
