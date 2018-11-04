@@ -1,16 +1,19 @@
-/**
- * Created by 54721 on 2018/11/2.
- */
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
 
-// 通过 .mui-scroll-wrapper 类, 选中元素, 进行区域滚动初始化
-mui('.mui-scroll-wrapper').scroll({
-  deceleration: 0.0005, // flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006,
-  indicators: false, //是否显示滚动条
-});
+<script>
 
+  /*
+  * 面试题:
+  * 地址栏传参: ?key=%E9%B9%8F&age=18&desc=%E5%B8%85
+  * 将参数一一解析出来, 解析成一个对象 { key: "鹏", age: 18, desc: "帅" }
+  * */
 
-// 复用的解析地址栏参数的方法
-function getSearch( k ) {
   // 获取地址栏参数
   var str = location.search; // ?key=%E9%B9%8F&age=18&desc=%E5%B8%85
 
@@ -35,5 +38,9 @@ function getSearch( k ) {
     obj[ key ] = value;
   })
 
-  return obj[ k ];
-}
+
+
+</script>
+
+</body>
+</html>

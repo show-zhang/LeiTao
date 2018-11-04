@@ -36,11 +36,11 @@
                 <!-- 二级列表 -->
                 <div class="child" style="display: block">
                   <a href="first.html">一级分类</a>
-                  <a class="active" href="second.html">二级分类</a>
+                  <a href="second.html">二级分类</a>
                 </div>
               </li>
               <li>
-                <a href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a>
+                <a class="active" href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a>
               </li>
             </div>
         </ul>
@@ -57,8 +57,7 @@
       <!-- 底部内容区域 -->
       <ol class="breadcrumb">
           <li><a href="#">管理系统</a></li>
-          <li>分类管理</li>
-          <li class="active">二级分类</li>
+          <li class="active">商品管理</li>
       </ol>
       <div class="content">
 
@@ -68,10 +67,13 @@
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th>序号</th>
-            <th>一级分类名</th>
-            <th>二级分类名</th>
-            <th>二级分类LOGO</th>
+            <th width="10%">序号</th>
+            <th width="25%">商品名</th>
+            <th width="25%">商品描述</th>
+            <th width="10%">商品库存</th>
+            <th width="10%">商品尺寸</th>
+            <th width="10%">商品状态</th>
+            <th width="10%">操作</th> 
           </tr>
         </thead>
         <tbody>
@@ -91,7 +93,7 @@
   <!-- 添加模态框 -->
 <div  id="addModal" class="modal fade" tabindex="-1" >
     <!-- modal-sm 小   modal-lg 大    默认中等  -->
-     <div class="modal-dialog modal-sm">
+     <div class="modal-dialog">
       <form id="form">  <!--因后方的submit提交按钮，需要包裹完才能提交表单内容-->
         <div class="modal-content">
           <div class="modal-header">
@@ -105,7 +107,7 @@
                     <!-- 按钮 -->
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                      <span id="dropdownText">请选择一级分类</span>
+                      <span id="dropdownText">请选择二级分类</span>
                       <!-- span是那个下拉图标 -->
                       <span class="caret"></span>
                     </button>
@@ -115,15 +117,31 @@
                     </ul>
                   </div>
                   <!-- 一级分类id 隐藏文本域 -->
-                  <input type="hidden" name="categoryId">
-                   <!-- hot 火热的品牌 火热1, 不火热0-->
-                   <input type="hidden" name="hot" value="1">
+                  <input type="hidden" name="brandId">
+                   
               </div>
               
-              <!-- 二级分类命名 -->
+              <!-- 商品名称 -->
               <div class="form-group">
-                <input type="text" name="brandName" class="form-control" id="exampleInputEmail1" placeholder="请输入二级分类">
+                <input type="text" name="proName" class="form-control" id="exampleInputEmail1" placeholder="请输入商品名称">
               </div>
+              <div class="form-group">
+                <textarea name="proDesc" class="form-control" id="exampleInputEmail1" placeholder="请输入商品描述" cols="30" rows="3"></textarea>
+                <!-- <input type="text" name="brandName" class="form-control" id="exampleInputEmail1" placeholder="请输入商品描述"> -->
+              </div>
+              <div class="form-group">
+                <input type="text" name="num" class="form-control" id="exampleInputEmail1" placeholder="请输入商品库存">
+              </div>
+              <div class="form-group">
+                <input type="text" name="size" class="form-control" id="exampleInputEmail1" placeholder="请输入商品尺码">
+              </div>
+              <div class="form-group">
+                <input type="text" name="oldPrice" class="form-control" id="exampleInputEmail1" placeholder="请输入商品原价">
+              </div>
+              <div class="form-group">
+                <input type="text" name="price" class="form-control" id="exampleInputEmail1" placeholder="请输入商品现价">
+              </div>
+             
 
               <!-- 上传图片 -->
               <div class="form-group">
@@ -131,13 +149,13 @@
                  data-url 后台文件上传的接口地址
                 -->
                 <label for="fileupload" class="btn btn-default">上传图片</label>
-                <input id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" type="file" style="display: none">
+                <input id="fileupload" name="pic1" data-url="/product/addProductPic" type="file" style="display: none" multiple>
               </div>
 
-              <!-- 图片预览 -->
+           
               <div class="form-group" id="imgBox">
-                  <img src="./images/none.png" alt="">
-                  <input type="hidden" name="brandLogo">
+                  <!-- <img src="" alt=""> -->
+                  <input type="hidden" name="picStatus">
                 
                 </div>
           </div>
@@ -174,13 +192,22 @@
     </div>
   </div>
 
-  <script type="text/html" id="secondTmp">
+  <script type="text/html" id="productTmp">
     {{ each rows v i}}
     <tr>
         <td>{{(i+1)+(page-1)*size}}</td>
-        <td>{{v.categoryName}}</td>
-        <td>{{v.brandName}}</td>
-        <td><img src="{{v.brandLogo}}" alt=""></td>
+        <td>{{v.proName}}</td>
+        <td>{{v.proDesc}}</td>
+        <td>{{v.num}}</td>
+        <td>{{v.size}}</td>
+        <td>{{v.statu===1?"已上架":"已下架"}}</td>
+        <td>
+          {{ if v.statu===1}}
+          <button class="btn btn-success">下架</button>
+          {{else}}
+          <button class="btn btn-danger">上架</button>
+          {{/if}}
+        </td>
       </tr>
     {{/each}}
   </script>
@@ -188,7 +215,7 @@
   <!-- 下拉框的模板 -->
   <script type="text/html" id="dropdownTmp"> 
     {{each rows v i}}
-    <li><a data-id="{{v.id}}" href="#">{{v.categoryName}}</a></li>
+    <li><a data-id="{{v.id}}" href="#">{{v.brandName}}</a></li>
     {{/each}}
   </script>
 
@@ -210,6 +237,6 @@
  
   <script src="./js/common.js"></script>
   <script src="./js/checkLogin.js"></script>
-  <script src="./js/second.js"></script>
+  <script src="./js/product2.js"></script>
 </body>
 </html>
