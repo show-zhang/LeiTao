@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 获取地址栏参数
+    // 属性search	设置或返回从问号 (?) 开始的 URL（查询部分）。
+    // var str=location.search;
+    // var str="?key=%E9%B9%8F&age=18&desc=%E5%B8%85";
+    // str=decodeURI(str);//?key=鹏&age=18&desc=帅
+    //   str=str.slice(1);//key=鹏&age=18&desc=帅
+    //   console.log(str);
+    //   var arr=str.split("&");//(3) ["key=鹏", "age=18", "desc=帅"]  数组
+    //   var obj={};
+    //   arr.forEach(function(v,i){
+    //     var key=v.split("=")[0];
+    //     var value=v.split("=")[1];
+    //     obj[key]=value;//{key: "鹏", age: "18", desc: "帅"}   对象
+    //     console.log(key,value);
+        
+    //   })
+    //   console.log(obj);
+      
+
+      // 封装成函数
+      function getSearch(k){
+        var str=location.search;//实际获取地址栏方法
+        var str="?key=%E9%B9%8F&age=18&desc=%E5%B8%85";//假设地址栏数值
+        str=decodeURI(str);//?key=鹏&age=18&desc=帅
+          str=str.slice(1);//key=鹏&age=18&desc=帅
+          console.log(str);
+          var arr=str.split("&");//(3) ["key=鹏", "age=18", "desc=帅"]  数组
+          var obj={};
+          arr.forEach(function(v,i){
+            var key=v.split("=")[0];
+            var value=v.split("=")[1];
+            obj[key]=value;//{key: "鹏", age: "18", desc: "帅"}   对象
+            // console.log(key,value);
+            
+          })
+          return obj["desc"];
+          console.log(obj);
+      }
+
+      var desc=getSearch("desc");
+      console.log(desc);
+      
+    
+  </script>
+</body>
+</html>

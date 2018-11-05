@@ -13,4 +13,23 @@ $(function(){
       $("#userInfo").html(htmlStr);
     }
   })
+
+  //退出登录功能
+  $("#logout").click(function(){
+    console.log("退出登录");
+    
+    $.ajax({
+        type:"get",
+        url:"/user/logout",
+        dataType:"json",
+        success:function(info){
+          console.log(info);
+           if(info.success){
+             // 退出成功, 跳转到登录页
+             location.href="login.html";
+           }
+        }
+    })
+
+  })
 })
