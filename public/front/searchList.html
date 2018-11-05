@@ -36,81 +36,29 @@
                   <!-- 乐淘排序-->
                   <div class="lt_sort">
                     <a href="#">上架时间 <i class="fa fa-angle-down"></i></a>
-                    <a href="#">价格 <i class="fa fa-angle-down"></i></a>
-                    <a href="#">库存 <i class="fa fa-angle-down"></i></a>
+                    <a href="#" data-type="price">价格 <i class="fa fa-angle-down"></i></a>
+                    <a href="#" data-type="num">库存 <i class="fa fa-angle-down"></i></a>
                     <a href="#">折扣 <i class="fa fa-angle-down"></i></a>
                   </div>
 
                   <!-- 搜索结果-->
                   <div class="lt_product">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/product.jpg" alt="">
-                          <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
-                          <p>
-                            <span class="oldPrice">&yen;560</span>
-                            <span class="price">&yen;580</span>
-                          </p>
-                          <button class="mui-btn mui-btn-primary">立即购买</button>
-                        </a>
-                      </li>
-                    </ul>
+                    <!-- 挖个坑 --> 
+                    <!-- 加载动画 -->
+                    <div class="loading"></div>
+                    <!-- <ul class="mui-clearfix"> -->
+                     <!-- <li>
+                      <a href="#">
+                        <img src="./images/product.jpg" alt="">
+                        <p class="mui-ellipsis-2">adidas阿迪达斯 男式 场下休闲篮球鞋S83700场下休闲篮球鞋S83700 </p>
+                        <p>
+                          <span class="oldPrice">&yen;560</span>
+                          <span class="price">&yen;580</span>
+                        </p>
+                        <button class="mui-btn mui-btn-primary">立即购买</button>
+                      </a>
+                    </li> -->
+                    <!-- </ul> -->
                   </div>
 
                   </div>
@@ -150,9 +98,24 @@
         </ul>
       </div>
     </div>
-
+  <script type="text/html" id="list_tmp">
+   <ul class="mui-clearfix">
+      {{each data v i}}
+      <li>
+        <a href="product.html?productId={{v.id}}">
+          <img src="{{v.pic[0].picAddr}}" alt="">
+          <p class="mui-ellipsis-2">{{v.proName}}</p>
+          <p>
+            <span class="price">&yen;{{v.price}}</span>
+            <span class="oldPrice">&yen;{{v.oldPrice}}</span>
+          </p>
+          <button class="mui-btn mui-btn-primary">立即购买</button>
+        </a>
+      </li>
+      {{/each}}
+    </ul>
+  </script>
    
-
   <script src="./lib/mui/js/mui.js"></script>
   <script src="./lib/zepto/zepto.min.js"></script>
   <script src="./lib/artTemplate/template-web.js"></script>

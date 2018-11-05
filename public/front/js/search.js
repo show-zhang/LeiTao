@@ -2,9 +2,9 @@ $(function(){
     // 由于进行的是本地存储操作, 约定存储的键名: search_list
 
   // 以下三句话, 放在控制台执行, 用于添加假数据
-   var arr = ["耐克", "阿迪", "阿迪王", "耐克王"];
-   var jsonStr = JSON.stringify( arr );
-   localStorage.setItem( "search_list", jsonStr );
+  //  var arr = ["耐克", "阿迪", "阿迪王", "耐克王"];
+  //  var jsonStr = JSON.stringify( arr );
+  //  localStorage.setItem( "search_list", jsonStr );
 
   /*
   * 功能分析:
@@ -122,13 +122,10 @@ $(function(){
       render();
       //重置搜索框
       $(".search_input").val("");
-      //跳转到搜索页面  语法：location.href=URL
-      location.href="./searchList.html";
+      //跳转到搜索页面  语法：location.href=URL  拼接关键字
+      location.href="searchList.html?key=" + key;
       
   })
 
 
-  
-
- 
 })
