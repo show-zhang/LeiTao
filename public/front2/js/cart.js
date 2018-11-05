@@ -50,14 +50,9 @@ $(function() {
       dataType: "json",
       success: function( info ) {
         console.log( info );
-
         // 页面重新渲染
         render();
       }
     })
-
-
   })
-
-
 })

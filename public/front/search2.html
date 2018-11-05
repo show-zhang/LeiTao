@@ -72,13 +72,13 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="cart.html">
                 <i class="fa fa-shopping-cart"></i>
                 <p>购物车</p>
               </a>
           </li>
           <li>
-            <a href="#">
+            <a href="user.html">
                 <i class="fa fa-user"></i>
                 <p>用户中心</p>
               </a>
@@ -102,7 +102,7 @@
         <ul>
           {{each list v i}}
           <li>
-            <a href="#">{{v}}</a>
+            <a  class="mui-pull-left" href="searchList.html?key={{ v }}">{{v}}</a>
             <i data-index="{{i}}" class="mui-pull-right mui-icon mui-icon-closeempty btn-delete"></i>
           </li>
           {{/each}}
